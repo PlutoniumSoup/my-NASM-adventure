@@ -1,0 +1,161 @@
+
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
+section .data
+section .bss
+section .text
+  global _start
+_start: 
+call end_program
+end_program:
+  mov rax, 60
+  xor rdi, rdi
+  syscall
