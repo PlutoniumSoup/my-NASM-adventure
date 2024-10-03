@@ -18,6 +18,7 @@ section .bss
   nameN resq 1
   LG resq 1
   strI resq 1
+  reversedStr resq 1
 
 section .text
   global _start
@@ -40,59 +41,14 @@ _start:
   call create_nodeList
   mov r14, str1
   call addNode
-  mov r15, nameN
   call addNode
   call addNode
-  mov r14, str2
+  mov r14, str3
+  call addNode
   call addNode
 
-  mov r15, nameN
-  mov r13, r15
-  call int_to_str
-  println strI
-
-  mov r15, [nameN]
-  mov r13, r15
-  call int_to_str
-  println strI
-
-  mov r15, [nameN]
-  mov r13, [r15]
-  call int_to_str
-  println strI
-
-  mov r15, [nameN]
-  mov r15, [r15]
-  mov r13, [r15]
-  call int_to_str
-  println strI
-
-  mov r15, [nameN]
-  mov r15, [r15]
-  mov r15, [r15]
-  mov r13, [r15]
-  call int_to_str
-  println strI
-
-  mov r15, [nameN]
-  mov r15, [r15]
-  mov r15, [r15]
-  mov r15, [r15]
-  mov r13, [r15]
-  call int_to_str
-  println strI
-
-  mov r15, [nameN]
-  mov r15, [r15]
-  mov r15, [r15]
-  mov r15, [r15]
-  mov r15, [r15]
-  mov r13, [r15+8]
-  println r13
-  call int_to_str
-  println strI
-  ; mov r15, LG
-  ; call create_nodeList
+  call print_nodeList
+  call print_nodeList
 
   ; Освобождаем память
   ; mov rax, 11             ; syscall: munmap
@@ -106,6 +62,67 @@ _start:
   mov rax, 60             ; syscall: exit
   xor rdi, rdi            ; статус выхода: 0
   syscall
+
+reverse_string:
+  push rax
+  push rcx
+  push rsi
+  push r13
+  mov rsi, r13
+  call strlen
+  mov rcx, rax
+
+  mov r13, 0
+  reverse_loop:
+    dec rcx                  ; Move the index backwards
+    js done1                  ; If we've processed the entire string, exit the loop
+    mov al, [rsi + rcx]      ; Load the current character from the input string
+    mov [reversedStr + r13], al            ; Store it in the reversed string
+    inc r13
+    jmp reverse_loop
+  done1:
+  pop r13
+  pop rax
+  pop rcx
+  pop rsi
+  ret
+
+print_nodeList:
+  push r15
+  push rax
+  push rdi
+  push rsi
+  push rdx
+  push r10
+  push r8
+  push r9
+
+  mov r15, [r15]
+  find_tail1:
+    cmp qword [r15], 0
+    je tail_found1
+    
+    mov r13, [r15]
+    call int_to_str
+    print reversedStr
+    print ad
+    println [r13+8]
+
+    mov r15, [r15]
+    jmp find_tail1
+  tail_found1:
+
+
+  pop r15
+  pop rax
+  pop rdi
+  pop rsi
+  pop rdx
+  pop r10
+  pop r8
+  pop r9
+  mov r15, nameN
+  ret
 
 create_nodeList:
   push rax
@@ -179,6 +196,7 @@ addNode:
   pop r10
   pop r8
   pop r9
+  mov r15, nameN
   ret
   
 
@@ -187,7 +205,7 @@ int_to_str:
   push rbx
   push rcx
   push rdx
-
+  push r13
   mov qword [strI], 0
   mov rax, r13
   mov rcx, 63
@@ -204,6 +222,9 @@ int_to_str:
     mov [strI + r12], rdx
     loop cc
   e:
+  mov r13, strI
+  call reverse_string
+  pop r13
   pop rdx
   pop rcx
   pop rbx
